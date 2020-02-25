@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1582156393 source:d:\documents\learncpp\dynamicarraycb\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	<time.h>
+
+1582155452 d:\documents\learncpp\dynamicarraycb\arraylist.h
+
+1582156687 source:d:\documents\learncpp\dynamicarraycb\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"Bool.h"
+
+1581905054 d:\documents\learncpp\dynamicarraycb\bool.h
+
