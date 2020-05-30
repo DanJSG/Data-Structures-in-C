@@ -18,5 +18,6 @@ int list_pop_front(SinglyLinkedList* list);
 int list_pop_back(SinglyLinkedList* list);
 void list_delete(SinglyLinkedList* list, int position);
 int list_remove_value(SinglyLinkedList* list, int value);
+int list_size(SinglyLinkedList* list);
 
 #endif // SINGLYLINKEDLIST_H_INCLUDED

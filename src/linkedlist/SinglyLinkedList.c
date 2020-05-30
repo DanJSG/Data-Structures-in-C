@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "SinglyLinkedList.h"
 
 SinglyLinkedList* list_constructor() {
@@ -59,7 +60,7 @@ int list_insert_at(SinglyLinkedList* list, int value, int position) {
 
 int list_get(SinglyLinkedList* list, int index) {
     if(list_is_empty(list)) {
-        return NULL;
+        return INT_MIN;
     }
     Node* currentNode = list->head;
     for(int i=0; i < index; i++) {
@@ -80,10 +81,10 @@ int list_pop_front(SinglyLinkedList* list) {
 
 void list_delete(SinglyLinkedList* list, int position) {
     if(list_is_empty(list)) {
-        return 1;
+        return;
     }
     if(position >= list_size(list)) {
-        return 1;
+        return;
     }
     Node* currentNode = list->head;
     Node* prevNode;
