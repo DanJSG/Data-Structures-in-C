@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include "SinglyLinkedList.h"
+#include "../common/Bool.h"
 
 SinglyLinkedList* slist_constructor() {
     SinglyLinkedList* list = malloc(sizeof(SinglyLinkedList));
@@ -162,8 +163,8 @@ int slist_size(SinglyLinkedList* list) {
 
 int slist_is_empty(SinglyLinkedList* list) {
     if(slist_size(list) == 0) {
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 

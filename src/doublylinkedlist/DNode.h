@@ -3,8 +3,8 @@
 
 typedef struct DNode {
     int value;
-    DNode* next;
-    DNode* prev;
+    struct DNode* next;
+    struct DNode* prev;
 } DNode;
 
 DNode* dnode_constructor(int value);

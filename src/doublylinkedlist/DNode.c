@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <DNode.h>
+#include "DNode.h"
 
 DNode* dnode_constructor(int value) {
     DNode* node = malloc(sizeof(DNode));
