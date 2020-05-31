@@ -167,4 +167,3 @@ int slist_is_empty(SinglyLinkedList* list) {
     }
     return false;
 }
-
