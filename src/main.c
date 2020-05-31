@@ -32,6 +32,7 @@ int main() {
     dlist_push_back(dlist, 3);
     dlist_print(dlist);
     dlist_remove_value(dlist, 3);
+    // dlist_remove_value(dlist, 3);
     dlist_print(dlist);
     exit(0);
 }

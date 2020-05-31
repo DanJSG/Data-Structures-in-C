@@ -163,37 +163,27 @@ int dlist_pop_back(DoublyLinkedList* list) {
 void dlist_remove_value(DoublyLinkedList* list, int value) {
     if(dlist_is_empty(list)) return;
     DNode* currentNode = list->head;
-    // DNode* prevNode;
-    int i = 0;
     while(currentNode->next != NULL) {
         if(currentNode->value == value) {
-            // printf("Found value at index %d...\n", i);
-            break;
-        }
-        // prevNode = currentNode;
-        currentNode = currentNode->next;
-        i++;
-    }
-
-    if(currentNode->value == value) {
-        if(i == 0) {
-            printf("Popping first item...\n");
-            dlist_pop_front(list);
-        } else if(i == dlist_size(list) - 1) {
-            printf("Popping last item...\n");
-            dlist_pop_back(list);
-        } else {
-            printf("Removing using middle method\n");
-            currentNode->prev->next = currentNode->next;
-            currentNode->next->prev = currentNode->prev;
-            dnode_destructor(currentNode);
+            DNode* to_destruct_ptr = currentNode;
+            if(currentNode->prev == NULL) {
+                currentNode->next->prev = NULL;
+                list->head = currentNode->next;
+            } else {
+                currentNode->prev->next = currentNode->next;
+                currentNode->next->prev = currentNode->prev;
+            }
+            currentNode = currentNode->next;
+            dnode_destructor(to_destruct_ptr);
             list->size--;
+            continue;
         }
-    } else {
-        if(i == dlist_size(list) - 1) {
-            return;
-        }
+        currentNode = currentNode->next;
     }
-    dlist_remove_value(list, value);
-
+    if(currentNode->value == value) {
+        currentNode->prev->next = NULL;
+        list->tail = currentNode;
+        dnode_destructor(currentNode);
+        list->size--;
+    }
 }
