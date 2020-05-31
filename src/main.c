@@ -32,28 +32,6 @@ int main() {
     dlist_push_back(dlist, 3);
     dlist_print(dlist);
     dlist_remove_value(dlist, 3);
-    dlist_remove_value(dlist, 3);
-    dlist_remove_value(dlist, 3);
-    dlist_remove_value(dlist, 3);
-    dlist_remove_value(dlist, 3);
-    dlist_remove_value(dlist, 3);
-    dlist_remove_value(dlist, 3);
     dlist_print(dlist);
-    dlist_destructor(dlist);
-    // dlist_insert_at(dlist, 16, 4);
-    // dlist_print(dlist);
-    // for(int i=0; i < 7; i++) {
-    //     int val = dlist_get(dlist, i);
-    //     printf("%d, ", val);
-    // }
-    // printf("\n");
-    // dlist_delete(dlist, 4);
-    // dlist_print(dlist);
-    // printf("%d\n", dlist_pop_back(dlist));
-    // printf("%d\n", dlist_pop_back(dlist));
-    // printf("%d\n", dlist_pop_back(dlist));
-    // printf("%d\n", dlist_pop_front(dlist));
-    // printf("%d\n", dlist_pop_front(dlist));
-    // printf("%d\n", dlist_pop_front(dlist));
     exit(0);
 }

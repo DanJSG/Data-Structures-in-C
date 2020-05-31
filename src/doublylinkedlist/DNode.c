@@ -23,5 +23,7 @@ DNode* dnode_get_prev(DNode* node) {
 }
 
 void dnode_destructor(DNode* node) {
+    node->next = NULL;
+    node->next = NULL;
     free(node);
 }

@@ -134,16 +134,18 @@ void dlist_delete(DoublyLinkedList* list, int index) {
     currentNode->next = NULL;
     currentNode->prev = NULL;
     dnode_destructor(currentNode);
+    list->size--;
 }
 
 int dlist_pop_front(DoublyLinkedList* list) {
-    printf("in pop front...\n");
+    // printf("in pop front...\n");
     if(dlist_is_empty(list)) return INT_MIN;
     DNode* node = list->head;
     int value = node->value;
     list->head->next->prev = NULL;
     list->head = list->head->next;
     dnode_destructor(node);
+    list->size--;
     return value;
 }
 
@@ -154,28 +156,44 @@ int dlist_pop_back(DoublyLinkedList* list) {
     list->tail->prev->next = NULL;
     list->tail = list->tail->prev;
     dnode_destructor(node);
+    list->size--;
     return value;
 }
 
-// void dlist_remove_value(DoublyLinkedList* list, int value) {
-//     if(dlist_is_empty(list)) return;
-//     DNode* currentNode = list->head;
-//     int i = 0;
-//     while(currentNode->next != NULL && currentNode->value != value) {
-//         printf("Getting next node...");
-//         currentNode = currentNode->next;
-//         i++;
-//     }
-//     if(currentNode->value != value) return;
-//     if(i == 0) {
-//         dlist_pop_front(list);
-//         return;
-//     } else if(i == dlist_size(list) - 1) {
-//         dlist_pop_back(list);
-//         return;
-//     }
-//     printf("Found value, removing...");
-//     currentNode->prev->next = currentNode->next;
-//     currentNode->next->prev = currentNode->prev;
-//     dnode_destructor(currentNode);
-// }
+void dlist_remove_value(DoublyLinkedList* list, int value) {
+    if(dlist_is_empty(list)) return;
+    DNode* currentNode = list->head;
+    // DNode* prevNode;
+    int i = 0;
+    while(currentNode->next != NULL) {
+        if(currentNode->value == value) {
+            // printf("Found value at index %d...\n", i);
+            break;
+        }
+        // prevNode = currentNode;
+        currentNode = currentNode->next;
+        i++;
+    }
+
+    if(currentNode->value == value) {
+        if(i == 0) {
+            printf("Popping first item...\n");
+            dlist_pop_front(list);
+        } else if(i == dlist_size(list) - 1) {
+            printf("Popping last item...\n");
+            dlist_pop_back(list);
+        } else {
+            printf("Removing using middle method\n");
+            currentNode->prev->next = currentNode->next;
+            currentNode->next->prev = currentNode->prev;
+            dnode_destructor(currentNode);
+            list->size--;
+        }
+    } else {
+        if(i == dlist_size(list) - 1) {
+            return;
+        }
+    }
+    dlist_remove_value(list, value);
+
+}
