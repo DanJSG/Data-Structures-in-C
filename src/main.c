@@ -6,33 +6,34 @@
 #include <time.h>
 
 int main() {
-    // ArrayList* arr = arr_constructor();
-    // for(int i=0; i<101; i++) {
-    //     arr_push(arr, i * 5);
-    // }
-    // arr_print(arr);
-    // arr_destructor(arr);
-
-    // SinglyLinkedList* list = slist_constructor();
-    // for(int i=0; i < 101; i++) {
-    //     slist_push_front(list, i * 5);
-    // }
-    // slist_print(list);
-
-    DoublyLinkedList* dlist = dlist_constructor();
+    int total = 50000000;
     
-    dlist_push_back(dlist, 3);
-    dlist_push_back(dlist, 1);
-    dlist_push_back(dlist, 2);
-    dlist_push_back(dlist, 3);
-    dlist_push_back(dlist, 3);
-    dlist_push_back(dlist, 5);
-    dlist_push_back(dlist, 4);
-    dlist_push_back(dlist, 3);
-    dlist_push_back(dlist, 3);
-    dlist_print(dlist);
-    dlist_remove_value(dlist, 3);
-    // dlist_remove_value(dlist, 3);
-    dlist_print(dlist);
+    clock_t arr_start = clock();
+    ArrayList* arr = arr_constructor();
+    int arr_val;
+    for(int i=0; i < total; i++) {
+        arr_insert_at(arr, 0, 10);
+    }
+    for(int i=0; i < total; i++) {
+        arr_val = arr_get(arr, 0);
+    }
+    clock_t arr_end = clock();
+    double arr_exec_time = ((double)(arr_end - arr_start)) / CLOCKS_PER_SEC;
+
+    clock_t list_start = clock();
+    DoublyLinkedList* list = dlist_constructor();
+    int list_val;
+    for(int i=0; i < total; i++) {
+        dlist_push_front(list, 10);
+    }
+    for(int i=0; i < total; i++) {
+        list_val = dlist_pop_front(list);
+    }
+    clock_t list_end = clock();
+    double list_exec_time = ((double)(list_end - list_start)) / CLOCKS_PER_SEC;
+
+    printf("List execution time: %lf\n", list_exec_time);
+    printf("Array execution time: %lf\n", arr_exec_time);
+
     exit(0);
 }

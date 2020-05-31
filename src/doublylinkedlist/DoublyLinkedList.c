@@ -142,8 +142,13 @@ int dlist_pop_front(DoublyLinkedList* list) {
     if(dlist_is_empty(list)) return INT_MIN;
     DNode* node = list->head;
     int value = node->value;
-    list->head->next->prev = NULL;
-    list->head = list->head->next;
+    if(list->head == list->tail) {
+        list->head->next = NULL;
+        list->head->prev = NULL;
+    } else {
+        list->head->next->prev = NULL;
+        list->head = list->head->next;
+    }
     dnode_destructor(node);
     list->size--;
     return value;
@@ -153,8 +158,13 @@ int dlist_pop_back(DoublyLinkedList* list) {
     if(dlist_is_empty(list)) return INT_MIN;
     DNode* node = list->tail;
     int value = node->value;
-    list->tail->prev->next = NULL;
-    list->tail = list->tail->prev;
+    if(list->head == list->tail) {
+        list->head->next = NULL;
+        list->head->prev = NULL;
+    } else {
+        list->tail->prev->next = NULL;
+        list->tail = list->tail->prev;
+    }
     dnode_destructor(node);
     list->size--;
     return value;
