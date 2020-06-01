@@ -10,6 +10,8 @@ typedef enum QConsts {
 typedef struct Queue {
     int size;
     int capacity;
+    int head;
+    int tail;
     QNode* nodes;
 } Queue;
 
