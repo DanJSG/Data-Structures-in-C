@@ -1,12 +1,6 @@
 #ifndef ARRAYLIST_H_INCLUDED
 #define ARRAYLIST_H_INCLUDED
-
-/** Enumeration containing constants for the initial capacity of the array list
-    and the rate at which it shrinks and grows. */
-typedef enum ArrayListConstants{
-    INIT_CAPACITY = 16,
-    RESIZE_FACTOR = 2
-} ArrayListConstants;
+#include "../common/ArrayConsts.h"
 
 /** Structure for an array list of integers. */
 typedef struct ArrayList {

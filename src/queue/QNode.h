@@ -1,13 +1,15 @@
 #ifndef QNODE_H_INCLUDED
 #define QNODE_H_INCLUDED
 
+typedef enum QNodeConstants {
+    MSG_MAX_CHAR = 255
+} QNodeConstants;
+
 typedef struct QNode {
-    char* msg;
+    char msg[MSG_MAX_CHAR];
     int length;
 } QNode;
 
-QNode* qnode_construct(const char* msg, int length);
-void qnode_destruct(QNode* node);
 char* qnode_get_msg(QNode* node);
 int qnode_get_length(QNode* node);
 

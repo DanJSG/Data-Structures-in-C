@@ -1,11 +1,8 @@
 #ifndef QUEUE_H_INCLUDED
 #define QUEUE_H_INCLUDED
 #include "../common/Bool.h"
-
-typedef enum QConsts {
-    INIT_CAPACITY = 16,
-    RESIZE_FACTOR = 2
-} QConsts;
+#include "../common/ArrayConsts.h"
+#include "QNode.h"
 
 typedef struct Queue {
     int size;
@@ -18,10 +15,15 @@ typedef struct Queue {
 Queue* q_construct();
 void q_destruct(Queue* queue);
 
-void q_enqueue(Queue* queue);
+void q_enqueue(Queue* queue, char* msg, int length);
 QNode* q_dequeue(Queue* queue);
 
-int q_size(Queue queue);
-Bool q_is_empty(Queue Queue)
+Bool q_upsize(Queue* queue);
+
+int q_size(Queue* queue);
+Bool q_is_empty(Queue* Queue);
+Bool q_is_full(Queue* queue);
+
+void q_print(Queue* queue);
 
 #endif //QUEUE_H_INCLUDED
