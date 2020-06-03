@@ -4,6 +4,8 @@
 #include "Queue.h"
 #include "QNode.h"
 
+Bool q_upsize(Queue* queue);
+
 Queue* q_construct() {
     Queue* queue = malloc(sizeof(queue));
     queue->nodes = malloc(sizeof(QNode) * INIT_CAPACITY);
@@ -19,13 +21,13 @@ void q_destruct(Queue* queue) {
     free(queue);
 }
 
-void q_enqueue(Queue* queue, char* msg, int length) {
+void q_enqueue(Queue* queue, char* msg) {
     Bool upsized;
     if(q_is_full(queue)) upsized = q_upsize(queue);
     if(!upsized) return;
     if(q_is_empty(queue)) queue->head++;
     queue->tail = (queue->tail + 1) % queue->capacity;
-    (*(queue->nodes + queue->tail)).length = length;
+    (*(queue->nodes + queue->tail)).length = strlen(msg);
     strcpy((*(queue->nodes + queue->tail)).msg, msg);
     queue->size++;
 }

@@ -7,7 +7,7 @@ typedef enum QNodeConstants {
 
 typedef struct QNode {
     char msg[MSG_MAX_CHAR];
-    int length;
+    size_t length;
 } QNode;
 
 char* qnode_get_msg(QNode* node);
