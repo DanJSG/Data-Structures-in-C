@@ -46,7 +46,6 @@ int upsize(ArrayList* list) {
         return 1;
     }
     list->array = newList;
-//    free(*newList);
     return 0;
 }
 

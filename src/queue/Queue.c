@@ -57,14 +57,10 @@ Bool q_is_full(Queue* queue) {
     return false;
 }
 
-/**
- * TODO - FIX THIS METHOD
- */
 Bool q_upsize(Queue* queue) {
-    printf("resizing...");
     int init_size = queue->size;
     queue->capacity *= RESIZE_FACTOR;
-    QNode* new_nodes = (QNode*)realloc(queue->nodes, queue->capacity * sizeof(QNode));
+    QNode* new_nodes = realloc(queue->nodes, queue->capacity * sizeof(QNode));
     if(!new_nodes) return false;
     queue->nodes = new_nodes;
     if(queue->head < queue->tail) return true;
@@ -76,7 +72,6 @@ Bool q_upsize(Queue* queue) {
 }
 
 void q_print(Queue* queue) {
-    printf("Printing the queue\n");
     int i;
     for(i=queue->head; i != queue->tail; i = (i + 1) % queue->capacity) {
         printf("Item at index %d contains message %s of length %d\n", i, (*(queue->nodes + i)).msg, (*(queue->nodes + i)).length);
