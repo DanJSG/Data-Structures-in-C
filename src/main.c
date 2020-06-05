@@ -47,47 +47,51 @@ int main() {
     // printf("%d\n", hash("msg"));
     // printf("%d\n", hash("ZZZZCCCCXXXXXXjasdiohjasdohj"));
 
-    char* alph = "abcdefghijklmnopqrstuvwxyz";
-    int output = 0;
+    printf("%lu\n", hashcode("test"));
+    printf("%lu\n", fnv1a_32("test"));
+    printf("%lu\n", fnv1a_64("test"));
 
-    clock_t start;
-    clock_t end;
+    // char* alph = "abcdefghijklmnopqrstuvwxyz";
+    // int output = 0;
 
-    double hashcode_time;
-    double fnv1a_time;
+    // clock_t start;
+    // clock_t end;
 
-    start = clock();
-    for(int i=0; i < strlen(alph); i++) {
-        for(int j=0; j < strlen(alph); j++) {
-            for(int k=0; k < strlen(alph); k++) {
-                char str[4] = "";
-                strncat(str, (alph + i), 1);
-                strncat(str, (alph + j), 1);
-                strncat(str, (alph + k), 1);
-                printf("%lu\n", hashcode(str) % 512);
-            }
-        }
-    }
-    end = clock();
-    hashcode_time = ((double)(end - start));
+    // double hashcode_time;
+    // double fnv1a_time;
 
-    start = clock();
-    for(int i=0; i < strlen(alph); i++) {
-        for(int j=0; j < strlen(alph); j++) {
-            for(int k=0; k < strlen(alph); k++) {
-                char str[4] = "";
-                strncat(str, (alph + i), 1);
-                strncat(str, (alph + j), 1);
-                strncat(str, (alph + k), 1);
-                printf("%lu\n", fnv1a_32(str) % 512);
-            }
-        }
-    }
-    end = clock();
-    fnv1a_time = ((double)(end - start));
+    // start = clock();
+    // for(int i=0; i < strlen(alph); i++) {
+    //     for(int j=0; j < strlen(alph); j++) {
+    //         for(int k=0; k < strlen(alph); k++) {
+    //             char str[4] = "";
+    //             strncat(str, (alph + i), 1);
+    //             strncat(str, (alph + j), 1);
+    //             strncat(str, (alph + k), 1);
+    //             printf("%lu\n", hashcode(str) % 512);
+    //         }
+    //     }
+    // }
+    // end = clock();
+    // hashcode_time = ((double)(end - start));
 
-    printf("Hash code took: %lf.\n", hashcode_time);
-    printf("FNV1a took: %lf.\n", fnv1a_time);
+    // start = clock();
+    // for(int i=0; i < strlen(alph); i++) {
+    //     for(int j=0; j < strlen(alph); j++) {
+    //         for(int k=0; k < strlen(alph); k++) {
+    //             char str[4] = "";
+    //             strncat(str, (alph + i), 1);
+    //             strncat(str, (alph + j), 1);
+    //             strncat(str, (alph + k), 1);
+    //             printf("%lu\n", fnv1a_32(str) % 512);
+    //         }
+    //     }
+    // }
+    // end = clock();
+    // fnv1a_time = ((double)(end - start));
+
+    // printf("Hash code took: %lf.\n", hashcode_time);
+    // printf("FNV1a took: %lf.\n", fnv1a_time);
 
     // for(int i=0; i < strlen(alph); i++) {
     //     printf("%d\n", hash((alph + i)));
@@ -96,9 +100,6 @@ int main() {
     // printf("%d\n", hashcode("test") % 256);
     // printf("%d\n", hashcode("stet") % 256);
     // printf("%d\n", hashcode("etst") % 256);
-
-
-
 
     // printf("%d\n", fnv_1a("test") % 256);
     // printf("%d\n", fnv_1a("stet") % 256);
