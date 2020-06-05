@@ -12,24 +12,6 @@
 #include "./common/BitMath.h"
 #include "./common/Hashes.h"
 
-// uint32_t fnv_1a(const unsigned char* str) {
-//     uint32_t prime = 16777619;
-//     uint32_t hash = 2166136261;
-//     for(int i=0; i < strlen(str); i++) {
-//         hash ^= *(str + i);
-//         hash *= prime;
-//     }
-//     return hash;
-// }
-
-// int hashcode(const unsigned char* str) {
-//     unsigned int hash = 0;
-//     for(int i=0; i < strlen(str); i++) {
-//         hash = 31 * hash + (unsigned int)(*(str + i));
-//     }
-//     return hash;
-// }
-
 int main() {
     // for(int i=0; i < 10; i++) {
     //     if(is_even(i)) printf("%d is even.\n", i);
