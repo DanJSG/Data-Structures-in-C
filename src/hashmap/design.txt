@@ -1,0 +1,10 @@
+pair -> key, value, used
+map -> capacity, size, pairs, keys, used indexes
+
+resize hashmap:
+    resize in same way as array list but reindex all of the existing items
+    storing the used indexes allows this to be done efficiently without having
+    to loop over empty elements
+
+first implement without any kind of probing
+then implement using linear probing
