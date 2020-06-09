@@ -51,7 +51,8 @@ int upsize(ArrayList* list) {
 
 void downsize(ArrayList* list) {
     list->capacity /= RESIZE_FACTOR;
-    realloc(list->array, list->capacity * sizeof(int));
+    list->array = realloc(list->array, list->capacity * sizeof(int));
+    if(!list->array) exit(1);
 }
 
 int arr_size(ArrayList* list) {

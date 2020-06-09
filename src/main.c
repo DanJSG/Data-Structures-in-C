@@ -11,6 +11,7 @@
 #include "./queue/QNode.h"
 #include "./common/BitMath.h"
 #include "./common/Hashes.h"
+#include "./hashmap/Hashmap.h"
 
 int main() {
     // for(int i=0; i < 10; i++) {
@@ -29,9 +30,22 @@ int main() {
     // printf("%d\n", hash("msg"));
     // printf("%d\n", hash("ZZZZCCCCXXXXXXjasdiohjasdohj"));
 
-    printf("%lu\n", hashcode("test"));
-    printf("%lu\n", fnv1a_32("test"));
-    printf("%lu\n", fnv1a_64("test"));
+    Hashmap* map = hashmap_construct();
+    hashmap_put(map, "Name", "Dan");
+    hashmap_put(map, "Age", "22");
+    hashmap_put(map, "Work", "Arm");
+
+    char* name = hashmap_get(map, "Name");
+    char* age = hashmap_get(map, "Age");
+    char* work = hashmap_get(map, "Work");
+    printf("The name is: %s\n", name);
+    printf("The age is: %s\n", age);
+    printf("Works at: %s\n", work);
+    // printf("%u\n", hashcode("test"));
+    // printf("%u\n", fnv1a_32("test"));
+    // printf("%lu\n", fnv1a_64("test"));
+
+    // printf("Testing123...\n");
 
     // char* alph = "abcdefghijklmnopqrstuvwxyz";
     // int output = 0;

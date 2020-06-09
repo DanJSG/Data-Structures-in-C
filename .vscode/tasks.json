@@ -1,19 +1,18 @@
 {
-    "version": "2.0.0",
     "tasks": [
         {
             "type": "shell",
-            "label": "shell: gcc.exe build active file",
-            "command": "C:\\MinGW\\bin\\gcc.exe",
+            "label": "C/C++: gcc build active file",
+            "command": "/usr/bin/gcc",
             "args": [
                 "-g",
                 "${fileDirname}/*/**.c",
                 "${fileDirname}/**.c",
                 "-o",
-                "${fileDirname}\\..\\build\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/../build/${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "C:\\MinGW\\bin"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
@@ -22,20 +21,7 @@
                 "kind": "build",
                 "isDefault": true
             }
-        },
-        {
-            "type": "shell",
-            "label": "gcc.exe build active file",
-            "command": "C:\\MinGW\\bin\\gcc.exe",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
-            "options": {
-                "cwd": "C:\\MinGW\\bin"
-            }
         }
-    ]
+    ],
+    "version": "2.0.0"
 }

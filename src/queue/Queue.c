@@ -76,7 +76,7 @@ Bool q_upsize(Queue* queue) {
 void q_print(Queue* queue) {
     int i;
     for(i=queue->head; i != queue->tail; i = (i + 1) % queue->capacity) {
-        printf("Item at index %d contains message %s of length %d\n", i, (*(queue->nodes + i)).msg, (*(queue->nodes + i)).length);
+        printf("Item at index %d contains message %s of length %lu\n", i, (*(queue->nodes + i)).msg, (*(queue->nodes + i)).length);
     }
-    printf("Item at index %d contains message %s of length %d\n", i, (*(queue->nodes + i)).msg, (*(queue->nodes + i)).length);
+    printf("Item at index %d contains message %s of length %lu\n", i, (*(queue->nodes + i)).msg, (*(queue->nodes + i)).length);
 }

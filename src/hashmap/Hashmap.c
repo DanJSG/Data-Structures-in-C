@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <inttypes.h>
 #include "Hashmap.h"
 #include "../common/Hashes.h"
@@ -17,8 +18,8 @@ void hashmap_put(Hashmap* map, char* key, char* val) {
     int index = ((int) fnv1a_32(key)) % map->capacity;
     // TODO implement linear probing here
     // TODO implement size check and dynamic resize/reshashing here
-    *(*(map->pairs + index)).key = key;
-    *(*(map->pairs + index)).val = val;
+    strcpy((*(map->pairs + index)).key, key);
+    strcpy((*(map->pairs + index)).val, val);
     (*(map->pairs + index)).used = true;
     *(map->used_indexes + map->size) = index;
     map->size++;
@@ -33,5 +34,5 @@ char* hashmap_get(Hashmap* map, char* key) {
 
 void hashmap_remove(Hashmap* map, char* key) {
     int index = ((int) fnv1a_32(key) % map->capacity);
-    
+    memmove(map->pairs + index, map->pairs + index + 1, (map->size - index) * sizeof(Pair));
 }
