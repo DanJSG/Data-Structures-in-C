@@ -27,18 +27,18 @@ void hashmap_put(Hashmap* map, const char* key, const char* val) {
     if(HASHMAP_IS_FULL(map)) 
         resized = hashmap_resize(map);
     if(!resized) return;
-    while((*(map->pairs + index)).used) {
-        if(strcmp((*(map->pairs + index)).key, key) == 0) {
-            strcpy((*(map->pairs + index)).val, val);
+    while(map->pairs[index].used) {
+        if(strcmp(map->pairs[index].key, key) == 0) {
+            strcpy(map->pairs[index].val, val);
             return;
         }
         index = index >= (map->capacity - 1) ? 0 : index + 1;
     }
-    strcpy((*(map->pairs + index)).key, key);
-    strcpy((*(map->pairs + index)).val, val);
-    (*(map->pairs + index)).used = true;
+    strcpy(map->pairs[index].key, key);
+    strcpy(map->pairs[index].val, val);
+    map->pairs[index].used = true;
     map->size++;
-    *(map->used_indexes + map->size - 1) = index;
+    map->used_indexes[map->size - 1] = index;
 }
 
 char* hashmap_get(Hashmap* map, char* key) {
@@ -55,7 +55,7 @@ char* hashmap_get(Hashmap* map, char* key) {
             return NULL;
         index++;
     }
-    char* val = (*(map->pairs + index)).val;
+    char* val = map->pairs[index].val;
     return val;
 }
 
@@ -70,7 +70,6 @@ void hashmap_delete_at(Hashmap* map, int index) {
 }
 
 Bool hashmap_resize(Hashmap* map) {
-    printf("[REALLOCATING MEMORY]\n");
     size_t init_size = map->size;
     map->capacity *= MAP_RESIZE_FACTOR;
     Pair* new_pairs = (Pair*) malloc(map->capacity * sizeof(Pair));
@@ -81,9 +80,8 @@ Bool hashmap_resize(Hashmap* map) {
         int current_index_dbg = map->used_indexes[i];
         Pair curr = map->pairs[map->used_indexes[i]];
         uint32_t index = fnv1a_32((unsigned char*)map->pairs[map->used_indexes[i]].key) % map->capacity;
-        while(new_pairs[index].used) {
+        while(new_pairs[index].used) 
             index = index >= (map->capacity - 1) ? 0 : index + 1;
-        }
         strcpy((unsigned char*)new_pairs[index].key, curr.key);
         strcpy((unsigned char*)new_pairs[index].val, curr.val);
         new_pairs[index].used = true;
