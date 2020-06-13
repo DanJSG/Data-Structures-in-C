@@ -2,11 +2,6 @@
 #define HASHMAP_H_INCLUDED
 #include "Pair.h"
 
-typedef enum MapConsts {
-    MAP_INIT_CAPACITY = 256,
-    MAP_RESIZE_FACTOR = 2
-} MapConsts;
-
 typedef struct Hashmap {
     size_t size;
     size_t capacity;
@@ -15,10 +10,10 @@ typedef struct Hashmap {
 } Hashmap;
 
 Hashmap* hashmap_construct();
-void hashmap_put(Hashmap* map, char* key, char* val);
+void hashmap_put(Hashmap* map, const char* key, const char* val);
 char* hashmap_get(Hashmap* map, char* key);
 void hashmap_remove(Hashmap* map, char* key);
 void hashmap_destruct(Hashmap* map);
-Bool hashmap_is_full(Hashmap* map);
+void hashmap_print(Hashmap* map);
 
 #endif //HASHMAP_H_INCLUDED

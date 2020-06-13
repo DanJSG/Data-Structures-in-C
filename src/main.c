@@ -33,14 +33,21 @@ int main() {
     Hashmap* map = hashmap_construct();
     hashmap_put(map, "Name", "Dan");
     hashmap_put(map, "Age", "22");
-    hashmap_put(map, "Work", "Arm");
+    hashmap_put(map, "Work", "Intern");
+    hashmap_put(map, "Work", "Student");
+    unsigned char* alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    size_t count = 0;
+    unsigned char curr_char[2] = " \0";
+    while(alpha[count] != '\0') {
+        curr_char[0] = alpha[count];
+        hashmap_put(map, curr_char, curr_char);
+        count++;
+    }
 
-    char* name = hashmap_get(map, "Name");
-    char* age = hashmap_get(map, "Age");
-    char* work = hashmap_get(map, "Work");
-    printf("The name is: %s\n", name);
-    printf("The age is: %s\n", age);
-    printf("Works at: %s\n", work);
+    hashmap_print(map);
+
+    hashmap_destruct(map);
+
     // printf("%u\n", hashcode("test"));
     // printf("%u\n", fnv1a_32("test"));
     // printf("%lu\n", fnv1a_64("test"));
@@ -205,5 +212,6 @@ int main() {
     //     q_enqueue(q, new_str);
     // }
     // q_print(q);
+    printf("\nExiting main...\n");
     exit(0);
 }
