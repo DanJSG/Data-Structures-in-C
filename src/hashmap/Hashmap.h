@@ -18,6 +18,7 @@ Hashmap* hashmap_construct();
 void hashmap_put(Hashmap* map, char* key, char* val);
 char* hashmap_get(Hashmap* map, char* key);
 void hashmap_remove(Hashmap* map, char* key);
-void hashmap_destruct(Hashmap*);
+void hashmap_destruct(Hashmap* map);
+Bool hashmap_is_full(Hashmap* map);
 
 #endif //HASHMAP_H_INCLUDED
