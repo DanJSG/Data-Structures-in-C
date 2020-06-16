@@ -4,12 +4,10 @@
 #include <inttypes.h>
 #include "Hashes.h"
 
-typedef enum fnv_consts {
-    PRIME_32 = 16777619U,
-    OFFSET_32 = 2166136261U,
-    PRIME_64 = 1099511628211U,
-    OFFSET_64 = 14695981039346656037U
-} fnv_consts;
+#define PRIME_32    16777619U
+#define OFFSET_32   2166136261U
+#define PRIME_64    1099511628211U
+#define OFFSET_64   14695981039346656037U
 
 static uint64_t fnv1a(const unsigned char* str, uint64_t prime, uint64_t offset) {
     uint64_t hash = offset;

@@ -4,6 +4,8 @@
 #include "SinglyLinkedList.h"
 #include "../common/Bool.h"
 
+#define SLIST_IS_EMPTY(list)    (list->size == 0 ? true : false)
+
 SinglyLinkedList* slist_constructor() {
     SinglyLinkedList* list = malloc(sizeof(SinglyLinkedList));
     list->size = 0;
@@ -12,21 +14,19 @@ SinglyLinkedList* slist_constructor() {
 }
 
 void slist_push_back(SinglyLinkedList* list, int value) {
-    if(slist_is_empty(list)) {
+    if(SLIST_IS_EMPTY(list)) 
         slist_push_front(list, value);
-    }
     SNode* newNode = snode_constructor(value);
     SNode* currentNode = list->head;
-    while(currentNode->next) {
+    while(currentNode->next) 
         currentNode = currentNode->next;
-    }
     currentNode->next = newNode;
     list->size++;
 }
 
 void slist_push_front(SinglyLinkedList* list, int value) {
     SNode* newNode = snode_constructor(value);
-    if(slist_is_empty(list)) {
+    if(SLIST_IS_EMPTY(list)) {
         list->head = newNode;
         list->size++;
         return;
@@ -37,11 +37,9 @@ void slist_push_front(SinglyLinkedList* list, int value) {
 }
 
 int slist_insert_at(SinglyLinkedList* list, int value, int position) {
-    if(position > list->size || position < 0) {
-        return 1;
-    }
+    if(position > list->size || position < 0) return 1;
     SNode* newNode = snode_constructor(value);
-    if(position == 0 || slist_is_empty(list)) {
+    if(position == 0 || SLIST_IS_EMPTY(list)) {
         slist_push_front(list, value);
         return 0;
     }
@@ -50,9 +48,8 @@ int slist_insert_at(SinglyLinkedList* list, int value, int position) {
         return 0;
     }
     SNode* currentNode = list->head;
-    for(int i=0; i<position - 2; i++) {
+    for(int i=0; i<position - 2; i++) 
         currentNode = currentNode->next;
-    }
     newNode->next = currentNode->next;
     currentNode->next = newNode;
     list->size++;
@@ -60,13 +57,10 @@ int slist_insert_at(SinglyLinkedList* list, int value, int position) {
 }
 
 int slist_get(SinglyLinkedList* list, int index) {
-    if(slist_is_empty(list)) {
-        return INT_MIN;
-    }
+    if(SLIST_IS_EMPTY(list)) return INT_MIN;
     SNode* currentNode = list->head;
-    for(int i=0; i < index; i++) {
+    for(int i=0; i < index; i++)
         currentNode = currentNode->next;
-    }
     return currentNode->value;
 }
 
@@ -81,12 +75,8 @@ int slist_pop_front(SinglyLinkedList* list) {
 }
 
 void slist_delete(SinglyLinkedList* list, int position) {
-    if(slist_is_empty(list)) {
-        return;
-    }
-    if(position >= slist_size(list)) {
-        return;
-    }
+    if(SLIST_IS_EMPTY(list)) return;
+    if(position >= slist_size(list)) return;
     SNode* currentNode = list->head;
     SNode* prevNode;
     for(int i=0; i<position - 1; i++) {
@@ -120,7 +110,7 @@ int slist_pop_back(SinglyLinkedList* list) {
 
 
 void slist_print(SinglyLinkedList* list) {
-    if(slist_is_empty(list)) {
+    if(SLIST_IS_EMPTY(list)) {
         printf("\nList is empty.\n");
         return;
     }
@@ -139,18 +129,14 @@ void slist_print(SinglyLinkedList* list) {
 }
 
 int slist_remove_value(SinglyLinkedList* list, int value) {
-    if(slist_is_empty(list)) {
-        return 1;
-    }
+    if(SLIST_IS_EMPTY(list)) return 1;
     SNode* currentNode = list->head;
     SNode* prevNode;
     while(currentNode->value != value && currentNode->next != NULL) {
         prevNode = currentNode;
         currentNode = currentNode->next;
     }
-    if(currentNode->value != value) {
-        return 1;
-    }
+    if(currentNode->value != value) return 1;
     prevNode->next = currentNode->next;
     snode_destructor(currentNode);
     currentNode = NULL;
@@ -159,11 +145,4 @@ int slist_remove_value(SinglyLinkedList* list, int value) {
 
 int slist_size(SinglyLinkedList* list) {
     return list->size;
-}
-
-int slist_is_empty(SinglyLinkedList* list) {
-    if(slist_size(list) == 0) {
-        return true;
-    }
-    return false;
 }

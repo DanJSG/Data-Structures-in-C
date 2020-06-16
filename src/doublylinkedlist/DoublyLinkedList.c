@@ -138,7 +138,6 @@ void dlist_delete(DoublyLinkedList* list, int index) {
 }
 
 int dlist_pop_front(DoublyLinkedList* list) {
-    // printf("in pop front...\n");
     if(dlist_is_empty(list)) return INT_MIN;
     DNode* node = list->head;
     int value = node->value;
