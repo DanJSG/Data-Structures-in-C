@@ -4,6 +4,12 @@
 #include "Queue.h"
 #include "QNode.h"
 
+#define INIT_CAPACITY       (1 << 4)
+#define RESIZE_FACTOR       (2)
+
+#define Q_IS_EMPTY(queue)   (queue->size == 0 ? true : false)
+#define Q_IS_FULL(queue)    (queue->size == queue->capacity ? true : false)
+
 Bool q_upsize(Queue* queue);
 
 Queue* q_construct() {
@@ -23,9 +29,9 @@ void q_destruct(Queue* queue) {
 
 void q_enqueue(Queue* queue, char* msg) {
     Bool upsized;
-    if(q_is_full(queue)) upsized = q_upsize(queue);
+    if(Q_IS_FULL(queue)) upsized = q_upsize(queue);
     if(!upsized) return;
-    if(q_is_empty(queue)) queue->head++;
+    if(Q_IS_EMPTY(queue)) queue->head++;
     queue->tail = (queue->tail + 1) % queue->capacity;
     (*(queue->nodes + queue->tail)).length = strlen(msg);
     strcpy((*(queue->nodes + queue->tail)).msg, msg);
@@ -33,7 +39,7 @@ void q_enqueue(Queue* queue, char* msg) {
 }
 
 QNode* q_dequeue(Queue* queue) {
-    if(q_is_empty(queue)) return NULL;
+    if(Q_IS_EMPTY(queue)) return NULL;
     QNode* node = queue->nodes + queue->head;
     if(queue->head == queue->tail) {
         queue->tail == -1;
@@ -49,16 +55,6 @@ int q_size(Queue* queue) {
     return queue->size;
 }
 
-Bool q_is_empty(Queue* queue) {
-    if(queue->size == 0) return true;
-    return false;
-}
-
-Bool q_is_full(Queue* queue) {
-    if(queue->size == queue->capacity) return true;
-    return false;
-}
-
 Bool q_upsize(Queue* queue) {
     int init_size = queue->size;
     queue->capacity *= RESIZE_FACTOR;
@@ -66,17 +62,15 @@ Bool q_upsize(Queue* queue) {
     if(!new_nodes) return false;
     queue->nodes = new_nodes;
     if(queue->head < queue->tail) return true;
-    for(int i=queue->head; i < init_size; i++) {
+    for(int i=queue->head; i < init_size; i++) 
         *(queue->nodes + i + init_size) = *(queue->nodes + i);
-    }
     queue->head = queue->head + init_size;
     return true;
 }
 
 void q_print(Queue* queue) {
     int i;
-    for(i=queue->head; i != queue->tail; i = (i + 1) % queue->capacity) {
+    for(i=queue->head; i != queue->tail; i = (i + 1) % queue->capacity)
         printf("Item at index %d contains message %s of length %lu\n", i, (*(queue->nodes + i)).msg, (*(queue->nodes + i)).length);
-    }
     printf("Item at index %d contains message %s of length %lu\n", i, (*(queue->nodes + i)).msg, (*(queue->nodes + i)).length);
 }

@@ -1,7 +1,6 @@
 #ifndef QUEUE_H_INCLUDED
 #define QUEUE_H_INCLUDED
 #include "../common/Bool.h"
-#include "../common/ArrayConsts.h"
 #include "QNode.h"
 
 /** Data type for a queue implemented using a circular array. */
@@ -24,9 +23,9 @@ QNode* q_dequeue(Queue* queue);
 /** Returns the size of the queue. */
 int q_size(Queue* queue);
 /** Returns true (1) if the queue is empty, false (0) otherwise. */
-Bool q_is_empty(Queue* Queue);
+Bool Q_IS_EMPTY(Queue* Queue);
 /** Returns true (1) if the queue is full, false (0) otherwise. */
-Bool q_is_full(Queue* queue);
+Bool Q_IS_FULL(Queue* queue);
 /** Prints the queue. */
 void q_print(Queue* queue);
 

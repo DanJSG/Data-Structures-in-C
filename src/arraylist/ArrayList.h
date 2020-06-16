@@ -1,6 +1,5 @@
 #ifndef ARRAYLIST_H_INCLUDED
 #define ARRAYLIST_H_INCLUDED
-#include "../common/ArrayConsts.h"
 
 /** Structure for an array list of integers. */
 typedef struct ArrayList {

@@ -5,6 +5,9 @@
 #include "ArrayList.h"
 #include "../common/Bool.h"
 
+#define INIT_CAPACITY   16
+#define RESIZE_FACTOR   2
+
 int upsize(ArrayList* list);
 int is_array_full(ArrayList* list);
 
