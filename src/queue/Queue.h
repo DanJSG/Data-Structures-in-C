@@ -22,10 +22,6 @@ void q_enqueue(Queue* queue, char* msg);
 QNode* q_dequeue(Queue* queue);
 /** Returns the size of the queue. */
 int q_size(Queue* queue);
-/** Returns true (1) if the queue is empty, false (0) otherwise. */
-Bool Q_IS_EMPTY(Queue* Queue);
-/** Returns true (1) if the queue is full, false (0) otherwise. */
-Bool Q_IS_FULL(Queue* queue);
 /** Prints the queue. */
 void q_print(Queue* queue);
 
